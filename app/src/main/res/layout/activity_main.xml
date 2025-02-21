@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Dealer's Cards -->
+    <TextView
+        android:id="@+id/tvDealer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dealer's Cards: "/>
+
+    <!-- Player's Cards -->
+    <TextView
+        android:id="@+id/tvPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Cards: "/>
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/btnHit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hit"/>
+
+    <Button
+        android:id="@+id/btnStand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stand"/>
+
+    <!-- Game Status -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
