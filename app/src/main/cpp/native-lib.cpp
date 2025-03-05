@@ -96,3 +96,86 @@ public:
         return calculateScore() < 17;
     }
 };
+
+Deck deck;
+Player player;
+Dealer dealer;
+bool gameOver = false;
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_MainActivity_nativeInit(JNIEnv *env, jobject thiz) {
+    deck = Deck();
+    player.clearHand();
+    dealer.clearHand();
+    gameOver = false;
+
+    player.addCard(deck.drawCard());
+    dealer.addCard(deck.drawCard());
+    player.addCard(deck.drawCard());
+    dealer.addCard(deck.drawCard());
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_MainActivity_nativeHit(JNIEnv *env, jobject thiz) {
+    if(!gameOver) {
+        player.addCard(deck.drawCard());
+        if(player.calculateScore() > 21) {
+            gameOver = true;
+        }
+    }
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_MainActivity_nativeStand(JNIEnv *env, jobject thiz) {
+    if(!gameOver) {
+        while(dealer.shouldHit()) {
+            dealer.addCard(deck.drawCard());
+        }
+        gameOver = true;
+    }
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_myapplication_MainActivity_getDealerHand(JNIEnv *env, jobject thiz) {
+    std::string handStr;
+    for (const Card &card : player.getHand()) {
+        switch (card.rank) {
+            case Card::ACE: handStr += "A "; break;
+            case Card::JACK: handStr += "J "; break;
+            case Card::QUEEN: handStr += "Q "; break;
+            case Card::KING: handStr += "K ";break;
+            default:         handStr += std::to_string(card.rank) + " ";
+        }
+    }
+    return env->NewStringUTF(handStr.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_myapplication_MainActivity_getPlayerHand(JNIEnv *env, jobject thiz) {
+    std::string handStr;
+    for (const Card &card : player.getHand()) {
+        switch (card.rank) {
+            case Card::ACE: handStr += "A "; break;
+            case Card::JACK: handStr += "J "; break;
+            case Card::QUEEN: handStr += "Q "; break;
+            case Card::KING: handStr += "K ";break;
+            default:         handStr += std::to_string(card.rank) + " ";
+        }
+    }
+    return env->NewStringUTF(handStr.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_myapplication_MainActivity_getGameStatus(JNIEnv *env, jobject thiz) {
+    if(!gameOver) return env->NewStringUTF("");
+
+    int playerScore = player.calculateScore();
+    int dealerScore = dealer.calculateScore();
+
+    if(playerScore > 21) return env->NewStringUTF("Bust! Dealer Wins.");
+    if(dealerScore > 21) return env->NewStringUTF("Dealer Busts! You Win.");
+    if(playerScore > dealerScore) return env->NewStringUTF("You Win.");
+    if(dealerScore > playerScore) return env->NewStringUTF("Dealer Wins.");
+    return env->NewStringUTF("Push (Tie).");
+}
