@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     static {
-        System.loadLibrary("blackjack");
+        System.loadLibrary("myapplication");
     }
 
     private native void nativeInit();

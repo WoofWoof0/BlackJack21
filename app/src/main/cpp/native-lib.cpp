@@ -45,6 +45,10 @@ public:
     }
 
     Card drawCard() {
+        if(cards.empty()) {
+            shuffle();
+        }
+
         Card card = cards.back();
         cards.pop_back();
         return card;
@@ -139,7 +143,7 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_getDealerHand(JNIEnv *env, jobject thiz) {
     std::string handStr;
-    for (const Card &card : player.getHand()) {
+    for (const Card &card : dealer.getHand()) {
         switch (card.rank) {
             case Card::ACE: handStr += "A "; break;
             case Card::JACK: handStr += "J "; break;
