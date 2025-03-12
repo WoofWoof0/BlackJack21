@@ -101,6 +101,52 @@ public:
     }
 };
 
+// Helper: Convert Card::Rank to lowercase string (e.g., ACE → "ace")
+std::string getRankString(Card::Rank rank) {
+    switch (rank) {
+        case Card::ACE:   return "ace";
+        case Card::TWO:   return "two";
+        case Card::THREE: return "three";
+        case Card::FOUR:  return "four";
+        case Card::FIVE:  return "five";
+        case Card::SIX:   return "six";
+        case Card::SEVEN: return "seven";
+        case Card::EIGHT: return "eight";
+        case Card::NINE:  return "nine";
+        case Card::TEN:   return "ten";
+        case Card::JACK:  return "jack";
+        case Card::QUEEN: return "queen";
+        case Card::KING:  return "king";
+        default:          return "";
+    }
+}
+
+// Helper: Convert Card::Suit to lowercase string (e.g., SPADES → "spades")
+std::string getSuitString(Card::Suit suit) {
+    switch (suit) {
+        case Card::HEARTS:   return "hearts";
+        case Card::DIAMONDS: return "diamonds";
+        case Card::CLUBS:    return "clubs";
+        case Card::SPADES:   return "spades";
+        default:             return "";
+    }
+}
+
+std::string getImageName(const Card &card) {
+    std::string rank = getRankString(card.rank);
+    std::string suit = getSuitString(card.suit);
+    std::string imageName = rank + "_of_" + suit;
+
+    // Append "2" for Kings, Queens, Jacks, or Ace of Spades
+    if (card.rank == Card::KING || card.rank == Card::QUEEN || card.rank == Card::JACK) {
+        imageName += "2"; // For IDs like "king_of_spades2"
+    } else if (card.rank == Card::ACE && card.suit == Card::SPADES) {
+        imageName += "2"; // For "ace_of_spades2"
+    }
+
+    return imageName;
+}
+
 Deck deck;
 Player player;
 Dealer dealer;
@@ -142,7 +188,7 @@ Java_com_example_myapplication_MainActivity_nativeStand(JNIEnv *env, jobject thi
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_getDealerHand(JNIEnv *env, jobject thiz) {
-    std::string handStr;
+    /*std::string handStr;
     for (const Card &card : dealer.getHand()) {
         switch (card.rank) {
             case Card::ACE: handStr += "A "; break;
@@ -152,6 +198,13 @@ Java_com_example_myapplication_MainActivity_getDealerHand(JNIEnv *env, jobject t
             default:         handStr += std::to_string(card.rank) + " ";
         }
     }
+    return env->NewStringUTF(handStr.c_str());*/
+
+    std::string handStr;
+    for (const Card &card : dealer.getHand()) {
+        handStr += getImageName(card) + " "; // e.g., "king_of_spades2 ace_of_hearts "
+    }
+    if (!handStr.empty()) handStr.pop_back(); // Remove trailing space
     return env->NewStringUTF(handStr.c_str());
 }
 extern "C"
@@ -159,14 +212,9 @@ JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_getPlayerHand(JNIEnv *env, jobject thiz) {
     std::string handStr;
     for (const Card &card : player.getHand()) {
-        switch (card.rank) {
-            case Card::ACE: handStr += "A "; break;
-            case Card::JACK: handStr += "J "; break;
-            case Card::QUEEN: handStr += "Q "; break;
-            case Card::KING: handStr += "K ";break;
-            default:         handStr += std::to_string(card.rank) + " ";
-        }
+        handStr += getImageName(card) + " ";
     }
+    if (!handStr.empty()) handStr.pop_back();
     return env->NewStringUTF(handStr.c_str());
 }
 extern "C"

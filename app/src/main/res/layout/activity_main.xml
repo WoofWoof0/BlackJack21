@@ -13,12 +13,32 @@
         android:layout_height="wrap_content"
         android:text="Dealer's Cards: "/>
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/dealerCardsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
     <!-- Player's Cards -->
     <TextView
         android:id="@+id/tvPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Cards: "/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/playerCardsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
 
     <!-- Buttons -->
     <Button
@@ -38,4 +58,267 @@
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <!--
+    <ImageView
+        android:id="@+id/king_of_spades2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/king_of_hearts2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/king_of_clubs2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/king_of_diamonds2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/queen_of_spades2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/queen_of_hearts2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/queen_of_clubs2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/queen_of_diamonds2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/jack_of_spades2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/jack_of_hearts2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/jack_of_clubs2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/jack_of_diamonds2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ten_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ten_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ten_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ten_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/nine_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/nine_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/nine_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/nine_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/eight_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/eight_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+    <ImageView
+        android:id="@+id/eight_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/eight_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/seven_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/seven_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/seven_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/seven_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/six_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/six_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/six_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/six_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/five_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/five_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/five_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/five_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/four_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/four_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/four_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/four_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/three_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/three_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/three_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/three_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/two_of_spades"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/two_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/two_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/two_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ace_of_spades2"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ace_of_hearts"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ace_of_clubs"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/ace_of_diamonds"
+        android:layout_width="50dp"
+        android:layout_height="70dp" />
+
+-->
+
 </LinearLayout>
